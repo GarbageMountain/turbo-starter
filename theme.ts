@@ -14,7 +14,7 @@ export const {
   divider,
 } = TurboProps(
   {
-    colors: { text: "#262626" },
+    colors: { text: "#262626", white: "#ffffff" },
     sizes: {
       "s-10": 12,
       "m-18": 18,

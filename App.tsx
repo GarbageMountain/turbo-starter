@@ -1,33 +1,57 @@
+import "react-native-gesture-handler";
 import React from "react";
 import { Text } from "react-native";
 import { DisplayPrimary, TextPrimary } from "./components/Typography.component";
 import { Layout } from "./components/Layout.component";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./theme";
-import {
-  OpenSans_400Regular,
-  OpenSans_700Bold,
-  OpenSans_300Light,
-} from "@expo-google-fonts/open-sans";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
 
-import {
-  RobotoSlab_300Light,
-  RobotoSlab_500Medium,
-  RobotoSlab_700Bold,
-} from "@expo-google-fonts/roboto-slab";
-
-import { useFonts } from "expo-font";
 import { Spacer } from "./components/Spacer.component";
+import { createStackNavigator } from "@react-navigation/stack";
+import { useCachedResources } from "./hooks/useCachedResources";
+
+const AppStack = createStackNavigator();
+
+function HomeScreen() {
+  const navigation = useNavigation();
+
+  return (
+    <Layout.Column bg="white" grow justify>
+      <Layout.PressableColumn
+        px
+        py
+        onPress={() => navigation.navigate("Settings")}
+      >
+        <DisplayPrimary size="xl-28">I am the Home Screen</DisplayPrimary>
+        <TextPrimary size="l-24">Press Me!</TextPrimary>
+      </Layout.PressableColumn>
+      <Layout.Column>
+        <Spacer.Vertical size="l-24" />
+      </Layout.Column>
+      <Spacer.Horizontal size="l-24" />
+    </Layout.Column>
+  );
+}
+
+function SettingsScreen() {
+  const navigation = useNavigation();
+  return (
+    <Layout.Column bg="white" grow justify>
+      <Layout.PressableColumn px py onPress={() => navigation.navigate("Home")}>
+        <DisplayPrimary size="xl-28">I am the Settings Screen</DisplayPrimary>
+        <TextPrimary size="l-24">Press Me!</TextPrimary>
+      </Layout.PressableColumn>
+      <Layout.Column>
+        <Spacer.Vertical size="l-24" />
+      </Layout.Column>
+      <Spacer.Horizontal size="l-24" />
+    </Layout.Column>
+  );
+}
 
 export default function App() {
-  let [fontsLoaded] = useFonts({
-    OpenSans_400Regular,
-    OpenSans_700Bold,
-    OpenSans_300Light,
-    RobotoSlab_300Light,
-    RobotoSlab_500Medium,
-    RobotoSlab_700Bold,
-  });
+  const fontsLoaded = useCachedResources();
 
   if (!fontsLoaded) {
     return (
@@ -39,18 +63,18 @@ export default function App() {
 
   if (fontsLoaded) {
     return (
-      <ThemeProvider theme={theme}>
-        <Layout.Column grow justify>
-          <Layout.PressableColumn px py onPress={() => alert("hello")}>
-            <DisplayPrimary size="xl-28">I am a header</DisplayPrimary>
-            <TextPrimary size="l-24">Press Me!</TextPrimary>
-          </Layout.PressableColumn>
-          <Layout.Column>
-            <Spacer.Vertical size="l-24" />
-          </Layout.Column>
-          <Spacer.Horizontal size="l-24" />
-        </Layout.Column>
-      </ThemeProvider>
+      <NavigationContainer>
+        <ThemeProvider theme={theme}>
+          <AppStack.Navigator
+            screenOptions={{
+              headerShown: false,
+            }}
+          >
+            <AppStack.Screen name="Home" component={HomeScreen} />
+            <AppStack.Screen name="Settings" component={SettingsScreen} />
+          </AppStack.Navigator>
+        </ThemeProvider>
+      </NavigationContainer>
     );
   }
 }
