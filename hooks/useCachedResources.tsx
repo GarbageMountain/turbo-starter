@@ -22,5 +22,7 @@ export function useCachedResources() {
     OpenSans_300Light,
   });
 
-  return fontsLoading;
+  const fontLoaded = !fontsLoading;
+
+  return fontLoaded;
 }
