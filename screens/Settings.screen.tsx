@@ -11,7 +11,7 @@ export const SettingsScreen: React.FC = () => {
   const navigation = useNavigation();
 
   return (
-    <Layout.Column bg="white" grow justify>
+    <Layout.ScreenContainer bg="white" grow justify>
       <Layout.PressableColumn px py onPress={() => navigation.navigate("Home")}>
         <DisplayPrimary size="xl-28">I am the Settings Screen</DisplayPrimary>
         <TextPrimary size="l-24">Press Me!</TextPrimary>
@@ -20,6 +20,6 @@ export const SettingsScreen: React.FC = () => {
         <Spacer.Vertical size="l-24" />
       </Layout.Column>
       <Spacer.Horizontal size="l-24" />
-    </Layout.Column>
+    </Layout.ScreenContainer>
   );
 };

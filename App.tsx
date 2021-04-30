@@ -2,6 +2,7 @@ import "react-native-gesture-handler";
 import React from "react";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./theme";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import { useCachedResources } from "./hooks/useCachedResources";
 import { LoadingScreen } from "./screens/Loading.screen";
@@ -15,8 +16,10 @@ export default function App() {
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      <Navigation />
-    </ThemeProvider>
+    <SafeAreaProvider>
+      <ThemeProvider theme={theme}>
+        <Navigation />
+      </ThemeProvider>
+    </SafeAreaProvider>
   );
 }

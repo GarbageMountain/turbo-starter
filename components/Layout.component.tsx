@@ -1,6 +1,7 @@
 import { styled, baseLayout, baseColumnLayout, baseRowLayout } from "../theme";
 
 import { View, Pressable, StyleSheet } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export const Layout = {
   Row: styled(View)`
@@ -25,6 +26,14 @@ export const Layout = {
       `border: solid ${StyleSheet.hairlineWidth}px green;`}
   `,
   PressableColumn: styled(Pressable)`
+    ${baseLayout}
+    ${baseColumnLayout}
+    ${({ debug, theme: { debugBorders } }) =>
+      (debugBorders || debug) &&
+      `border: solid ${StyleSheet.hairlineWidth}px purple;`}
+  `,
+
+  ScreenContainer: styled(SafeAreaView)`
     ${baseLayout}
     ${baseColumnLayout}
     ${({ debug, theme: { debugBorders } }) =>

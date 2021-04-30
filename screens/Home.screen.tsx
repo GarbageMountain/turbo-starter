@@ -11,7 +11,7 @@ export const HomeScreen: React.FC = () => {
   const navigation = useNavigation();
 
   return (
-    <Layout.Column bg="white" grow justify>
+    <Layout.ScreenContainer bg="white" grow justify>
       <Layout.PressableColumn
         px
         py
@@ -24,6 +24,6 @@ export const HomeScreen: React.FC = () => {
         <Spacer.Vertical size="l-24" />
       </Layout.Column>
       <Spacer.Horizontal size="l-24" />
-    </Layout.Column>
+    </Layout.ScreenContainer>
   );
 };
