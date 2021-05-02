@@ -14,12 +14,18 @@ export const {
   divider,
 } = TurboProps(
   {
-    colors: { text: "#262626", white: "#ffffff" },
+    colors: {
+      grey: "grey",
+      buttonBlue: "blue",
+      text: "#262626",
+      white: "#ffffff",
+    },
     sizes: {
       "s-10": 12,
       "m-18": 18,
       "l-24": 24,
       "xl-28": 28,
+      "xxl-48": 48,
     },
     fonts: {
       "open-sans": {
@@ -43,7 +49,7 @@ export const {
     color: "text",
     font: "open-sans",
     weight: "regular",
-    // This is a really shitty default
+    // This is a not great default
     shadow: {
       color: "text",
       offset: {
