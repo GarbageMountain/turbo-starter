@@ -56,44 +56,43 @@ export const HomeScreen: React.FC = () => {
 
     if (!game.board[idx].player) {
       copyGame.board[idx].player = copyGame.player;
+      copyGame.player = "X";
 
-      copyGame["player"] = "X";
-
-      if (handleCheckGame(copyGame.board)) {
+      if (handleCheckGame(copyGame.board, "X")) {
         setGame({
           ...copyGame,
           gameStarted: false,
-          winner: handleCheckGame(copyGame.board),
+          winner: handleCheckGame(copyGame.board, "X"),
         });
         return;
       }
 
-      setGame(copyGame);
+      setGame({ ...copyGame, player: "O" });
+
       setTimeout(() => {
         handleCPUPress(copyGame);
-      }, 200);
-
-      if (handleCheckGame(copyGame.board)) {
-        setGame({
-          ...copyGame,
-          winner: handleCheckGame(copyGame.board),
-          gameStarted: false,
-        });
-        return;
-      }
+        if (handleCheckGame(copyGame.board, "O")) {
+          setGame({
+            ...copyGame,
+            winner: handleCheckGame(copyGame.board, "O"),
+            gameStarted: false,
+          });
+          return;
+        }
+      }, 400);
     }
   };
 
-  const handleCheckGame = (checkGame: RowType[]) => {
+  const handleCheckGame = (checkGame: RowType[], player: string) => {
     for (let i = 0; i < win.length - 1; i++) {
       let [first, second, third] = win[i];
 
       if (
-        checkGame[first].player === game.player &&
-        checkGame[second].player === game.player &&
-        checkGame[third].player === game.player
+        checkGame[first].player === player &&
+        checkGame[second].player === player &&
+        checkGame[third].player === player
       ) {
-        return `${game.player === "X" ? "You" : "CPU"} won!`;
+        return `${player === "X" ? "You" : "CPU"} won!`;
       }
     }
 
@@ -129,7 +128,15 @@ export const HomeScreen: React.FC = () => {
           </DisplayPrimary>
         </Layout.Row>
 
-        <Layout.Row center style={{ flexWrap: "wrap", minWidth: 300 }}>
+        <Layout.Row
+          center
+          style={{
+            flexWrap: "wrap",
+            minWidth: 300,
+            borderColor: "black",
+            borderWidth: 1,
+          }}
+        >
           {/* TODO: fix border outline issue */}
           {game.board.map((tile) => {
             return (
@@ -141,8 +148,6 @@ export const HomeScreen: React.FC = () => {
                 style={{
                   width: 100,
                   height: 100,
-                  borderColor: "black",
-                  borderWidth: 1,
                 }}
                 center
                 px
@@ -160,7 +165,7 @@ export const HomeScreen: React.FC = () => {
         {/* Come back an refactor if you have a minute */}
         {game.gameStarted && !game.winner ? (
           <TextPrimary>
-            {game.player === "X" ? "It's your Turn" : "It's CPU Turn"}
+            {game.player === "X" ? "It's your Turn" : "It's CPU's Turn"}
           </TextPrimary>
         ) : game.winner ? (
           <TextPrimary>{game.winner}</TextPrimary>
