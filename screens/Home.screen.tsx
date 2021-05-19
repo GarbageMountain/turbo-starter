@@ -148,6 +148,8 @@ export const HomeScreen: React.FC = () => {
                 style={{
                   width: 100,
                   height: 100,
+                  borderColor: "black",
+                  borderWidth: 1,
                 }}
                 center
                 px
