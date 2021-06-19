@@ -13,7 +13,8 @@ export const HomeScreen: React.FC = () => {
           Turbo-Props Starter
         </Display>
       </Layout.Row>
-
+      {/* TODO: Check typescript docs on Navigation 6 */}
+      {/* @ts-expect-error */}
       <Layout.PressableRow center onPress={() => navigate("Settings")}>
         <Display>Click For Settings</Display>
       </Layout.PressableRow>

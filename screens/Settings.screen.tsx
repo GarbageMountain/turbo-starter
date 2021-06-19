@@ -5,11 +5,13 @@ import { Spacer } from "../components/Spacer.component";
 import { Display, Text } from "../components/Typography.component";
 
 export const SettingsScreen: React.FC = () => {
-  const navigation = useNavigation();
+  const { navigate } = useNavigation();
 
   return (
     <Layout.ScreenContainer bg="white" grow justify>
-      <Layout.PressableColumn px py onPress={() => navigation.navigate("Home")}>
+      {/* TODO: Check typescript docs on Navigation 6 */}
+      {/* @ts-expect-error */}
+      <Layout.PressableColumn px py onPress={() => navigate("Home")}>
         <Display size="xl-28">I am the Settings Screen</Display>
         <Text size="l-24">Press Me!</Text>
       </Layout.PressableColumn>
