@@ -3,13 +3,11 @@ import {
   OpenSans_700Bold,
   OpenSans_300Light,
 } from "@expo-google-fonts/open-sans";
-
 import {
   RobotoSlab_300Light,
   RobotoSlab_500Medium,
   RobotoSlab_700Bold,
 } from "@expo-google-fonts/roboto-slab";
-
 import { useFonts } from "expo-font";
 
 export function useCachedResources() {

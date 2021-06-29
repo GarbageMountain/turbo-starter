@@ -1,5 +1,6 @@
-import { styled, baseTypography } from "../theme";
 import { StyleSheet, Text as RawText } from "react-native";
+
+import { styled, baseTypography } from "../theme";
 
 export const Text = styled(RawText)`
   ${baseTypography}

@@ -1,4 +1,5 @@
 import { StyleSheet, View } from "react-native";
+
 import { styled, spacer } from "../theme";
 
 export const Spacer = {

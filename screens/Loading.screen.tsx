@@ -1,7 +1,7 @@
-import { Layout } from "../components/Layout.component";
-import { TextPrimary } from "../components/Typography.component";
 import React from "react";
 import { Text } from "react-native";
+
+import { Layout } from "../components/Layout.component";
 
 type LoadingProps = {
   screen: string;

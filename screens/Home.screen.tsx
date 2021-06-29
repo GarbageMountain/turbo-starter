@@ -1,7 +1,7 @@
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { Layout } from "../components/Layout.component";
 
+import { Layout } from "../components/Layout.component";
 import { Display } from "../components/Typography.component";
 
 export const HomeScreen: React.FC = () => {

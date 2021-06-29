@@ -1,4 +1,5 @@
 import { View } from "react-native";
+
 import { styled, divider } from "../theme";
 
 // Add attrs with more sensable defaults
